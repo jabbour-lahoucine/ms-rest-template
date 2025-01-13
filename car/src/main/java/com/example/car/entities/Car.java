@@ -19,5 +19,5 @@ public class Car {
     private String brand;
     private String model;
     private String matricule;
-    private Long client_id;
+    private Long client;
 }

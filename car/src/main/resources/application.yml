@@ -1,16 +1,62 @@
 server:
-  port: 8082
+  port: 8083
 
 spring:
   application:
     name: SERVICE-CAR
+
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/carservicedb?createDatabaseIfNotExist=true
-    username: "root"
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:carservicedb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
     password: ""
+
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
 
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+
+
+#if you want to use consule incomment the following code and comment the above code
+
+#spring:
+#  cloud:
+#    consul:
+#      host: localhost
+#      port: 8500
+#      discovery:
+#        service-name: SERVICE-CAR
+#  application:
+#    name: SERVICE-CAR
+#  datasource:
+#    url: jdbc:h2:mem:carservicedb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+#    driver-class-name: org.h2.Driver
+#    username: sa
+#    password:
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    show-sql: true
+#    properties:
+#      hibernate:
+#        format_sql: true
+#server:
+#  port: 8083
+#
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: health,info
+#  health:
+#    consul:
+#      enabled: true
+#  endpoint:
+#    health:
+#      show-details: always

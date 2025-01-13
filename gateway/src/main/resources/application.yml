@@ -11,3 +11,15 @@ spring:
 eureka:
   instance:
     hostname: localhost
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  health:
+    consul:
+      enabled: true
+  endpoint:
+    health:
+      show-details: always
