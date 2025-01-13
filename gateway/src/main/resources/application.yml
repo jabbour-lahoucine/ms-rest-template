@@ -8,18 +8,31 @@ spring:
     discovery:
       enabled: true
 
+# Configuration pour Eureka (si vous utilisez Eureka)
 eureka:
   instance:
     hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
 
+# Configuration pour Consul
+# spring:
+#   cloud:
+#     consul:
+#       host: localhost
+#       port: 8500
+#       discovery:
+#         service-name: Gateway
+
+# Actuator configuration
 management:
   endpoints:
     web:
       exposure:
-        include: health,info
-  health:
-    consul:
-      enabled: true
+        include: "*"  # Expose tous les endpoints Actuator (y compris /actuator/prometheus)
   endpoint:
     health:
       show-details: always
+    metrics:
+      enabled: true
